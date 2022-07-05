@@ -1,9 +1,11 @@
 import { Fragment } from "react";
 import Head from "next/head";
-import { getDatabase, getPage, getBlocks } from "../../../lib/notion";
+import { getBlocks } from "../../../pages/api/Page/Blocks/getBlocks"
+import { getDatabase } from "../../../pages/api/Database/getDatabase"
+import { getPage } from "../../../pages/api/Page/getPage"
 import Link from "next/link";
-import { databaseId } from "../index";
-import styles from  "../../../styles/post.module.css";
+import { databaseId } from "../../../pages/index";
+import styles from  "../../../../styles/post.module.css";
 
 // @ts-ignore
 export const Text = ({ text }) => {
@@ -12,6 +14,7 @@ export const Text = ({ text }) => {
   }
 // @ts-ignore
   return text.map((value) => {
+    console.log(value)
     const {
       annotations: { bold, code, color, italic, strikethrough, underline },
       text,
@@ -127,11 +130,12 @@ const renderBlock = (block) => {
       return <hr key={id} />;
     case "quote":
       return <blockquote key={id}>{value.text[0].plain_text}</blockquote>;
+      // code fixed
     case "code":
       return (
         <pre className={styles.pre}>
           <code className={styles.code_block} key={id}>
-            {value.text[0].plain_text}
+            {value.rich_text[0].text.content}
           </code>
         </pre>
       );

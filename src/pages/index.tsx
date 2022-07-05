@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
-import { getDatabase } from "../../lib/notion";
-import { Text } from '../pages/blogPage/[id]'
+import { getDatabase } from "./api/Database/getDatabase";
+import { Text } from './views/blogPage/[id]'
 import styles from "../../styles/index.module.css";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
@@ -39,7 +39,7 @@ export default function Home({ posts }) {
             return (
               <li key={post.id} className={styles.post}>
                 <h3 className={styles.postTitle}>
-                  <Link href={`/blogPage/${post.id}`}>
+                  <Link href={`./views/blogPage/${post.id}`}>
                     <a>
                       <Text text={post.properties.Name.title} />
                     </a>
@@ -47,7 +47,7 @@ export default function Home({ posts }) {
                 </h3>
 
                 <p className={styles.postDescription}>{date}</p>
-                <Link href={`/blogPage/${post.id}`}>
+                <Link href={`./views/blogPage/${post.id}`}>
                   <a> Read post →</a>
                 </Link>
               </li>
