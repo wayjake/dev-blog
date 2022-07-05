@@ -5,137 +5,50 @@ import { getDatabase } from "../../../pages/api/Database/getDatabase"
 import { getPage } from "../../../pages/api/Page/getPage"
 import Link from "next/link";
 import { databaseId } from "../../../pages/index";
-import styles from  "../../../../styles/post.module.css";
+import { styles } from "../../../../styles/post.module.css"
 import Paragraph from "./components/Paragraph";
+import Text from "./components/Text"
+import List from "./components/List";
+import ToDo from "./components/ToDo";
+import Toggle from "./components/Toggle";
+import Image from "./components/Image";
+import Code from "./components/Code";
 
-// @ts-ignore
-export const Text = ({ text }) => {
-  console.log("text", text)
-  if (!text) {
-    return null;
-  }
-// @ts-ignore
-  return text.map((value) => {
-    console.log(value)
-    const {
-      annotations: { bold, code, color, italic, strikethrough, underline },
-      text,
-    } = value;
-    return (
-      <span 
-          className={[
-          bold ? styles.bold : "",
-          code ? styles.code : "",
-          italic ? styles.italic : "",
-          strikethrough ? styles.strikethrough : "",
-          underline ? styles.underline : "",
-        ].join(" ")}
-        style={color !== "default" ? { color } : {}}
-      >
-        {text.link ? <a href={text.link.url}>{text.content}</a> : text.content}
-      </span>
-    );
-  });
-};
 
-const renderNestedList = (block) => {
-  const { type } = block;
-  const value = block[type];
-  if (!value) return null;
-
-  const isNumberedList = value.children[0].type === 'numbered_list_item'
-
-  if (isNumberedList) {
-    return (
-      <ol>
-        {value.children.map((block) => renderBlock(block))}
-      </ol>
-    )
-  }
-  return (
-    <ul>
-      {value.children.map((block) => renderBlock(block))}
-    </ul>
-  )
-}
-
-const renderBlock = (block) => {
+export const renderBlock = (block) => {
   const { type, id } = block;
   const value = block[type];
+  console.log("value:", value)
 
+  return (
+    <main>
+    <div>{type == "paragraph" ? <Paragraph text={value.rich_text}/>: "" }</div>
+     <div>{type == "heading_1" ? <h1><Text text={value.rich_text}/></h1>: "" }</div>
+     <div>{type == "heading_2" ? <h2><Text text={value.rich_text}/></h2>: "" }</div>
+     <div>{type == "heading_3" ? <h3><Text text={value.rich_text}/></h3>: "" }</div>
+     <div>{type == "bulleted_list_item" || type == "numbered_list_item" ?        
+          <List type={type} text={value.rich_text} />: ""}</div>
+     <div>{type == "to_do" ? <ToDo text={value} id={id}/>: "" }</div>
+     <div>{type == "toggle" ? <Toggle text={value} id={id}/>: "" }</div>
+     <div>{type == "child_page" ? <p>Page: {value.title}, linking to pages not currently supported!</p>: "" }</div>
+     <div>{type == "image" ? <Image value={value}/>: "" }</div>
+     <div>{type == "divider" ? <hr key={id}/>: "" }</div>
+     <div>{type == "quote" ? <blockquote key={id}>{value.rich_text[0].plain_text}</blockquote>: "" }</div>
+     <div>{type == "code" ? <Code text={value} id={id}/>: "" }</div>
+
+
+
+
+
+    
+
+
+
+    </main>
+
+  )
   switch (type) {
-    case "paragraph":
-      // paragraph fixed
-      console.log("paragraph", value)
-      return (<Paragraph text={value.rich_text} />);
-    case "heading_1":
-      // heading
-      console.log("heading", value)
-      return (
-        <h1>
-          <Text text={value.rich_text} />
-        </h1>
-      );
-    case "heading_2":
-      return (
-        <h2>
-          <Text text={value.rich_text} />
-        </h2>
-      );
-    case "heading_3":
-      return (
-        <h3>
-          <Text text={value.rich_text} />
-        </h3>
-      );
-    case "bulleted_list_item":
-    case "numbered_list_item":
-      return (
-        <li>
-          <Text text={value.rich_text} />
-          {!!value.children && renderNestedList(block)}
-        </li>
-      );
-    case "to_do":
-      return (
-        <div>
-          <label htmlFor={id}>
-            <input type="checkbox" id={id} defaultChecked={value.checked} />{" "}
-            <Text text={value.rich_text} />
-          </label>
-        </div>
-      );
-    case "toggle":
-      console.log("toggle:", value)
-      return (
-        <details>
-          <summary>
-            <Text text={value.rich_text} />
-          </summary>
-          {value.children?.map((block) => (
-            <Fragment key={block.id}>{renderBlock(block)}</Fragment>
-          ))}
-        </details>
-      );
-    case "child_page":
-      return <p>{value.title}</p>;
-    case "image":
-      const src =
-        value.type === "external" ? value.external.url : value.file.url;
-      const caption = value.caption ? value.caption[0]?.plain_text : "";
-      return (
-        <figure>
-          <img src={src} alt={caption} />
-          {caption && <figcaption>{caption}</figcaption>}
-        </figure>
-      );
-      //divider works
-    case "divider":
-      return <hr key={id} />;
-      //quote fixed
-    case "quote":
-      return <blockquote key={id}>{value.rich_text[0].plain_text}</blockquote>;
-      // code fixed
+
     case "code":
       return (
         <pre className={styles.pre}>
@@ -186,8 +99,8 @@ export default function Post({ page, blocks }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <article className={styles.container}>
-        <h1 className={styles.name}>
+      <article>
+        <h1>
           <Text text={page.properties.Name.title} />
         </h1>
         <section>
@@ -195,7 +108,7 @@ export default function Post({ page, blocks }) {
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
           ))}
           <Link href="/">
-            <a className={styles.back}>← Go home</a>
+            <a>← Go home</a>
           </Link>
         </section>
       </article>

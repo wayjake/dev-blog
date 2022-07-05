@@ -1,6 +1,7 @@
-import { Text } from "../[id]";
+import { Text } from "./Text";
 
-const Paragraph: React.FC = ({ text }) => {
+//@ts-ignore
+const Paragraph:React.FC = ({ text }) => {
   return (
     <p>
       <Text text={text} />

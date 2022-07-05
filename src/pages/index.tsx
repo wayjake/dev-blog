@@ -1,7 +1,7 @@
 import Head from "next/head";
 import Link from "next/link";
 import { getDatabase } from "./api/Database/getDatabase";
-import { Text } from './views/blogPage/[id]'
+import { Text } from './views/blogPage/components/Text'
 import styles from "../../styles/index.module.css";
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
