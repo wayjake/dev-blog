@@ -13,12 +13,19 @@ import ToDo from "./components/ToDo";
 import Toggle from "./components/Toggle";
 import Image from "./components/Image";
 import Code from "./components/Code";
+import File from "./components/File";
+import Bookmark from "./components/Bookmark";
 
 
 export const renderBlock = (block) => {
   const { type, id } = block;
   const value = block[type];
-  console.log("value:", value)
+
+  const objTypes = [
+    "paragraph", "heading_1", "heading_2", "heading_3", "bulleted_list_item", 
+  "numbered_list_item", "to_do", "toggle", "child_page", "image", "bookmark",
+  "divider", "code", "file", "quote"
+]
 
   return (
     <main>
@@ -35,57 +42,11 @@ export const renderBlock = (block) => {
      <div>{type == "divider" ? <hr key={id}/>: "" }</div>
      <div>{type == "quote" ? <blockquote key={id}>{value.rich_text[0].plain_text}</blockquote>: "" }</div>
      <div>{type == "code" ? <Code text={value} id={id}/>: "" }</div>
-
-
-
-
-
-    
-
-
-
+     <div>{type == "file" ? <File value={value} type={type}/>: "" }</div>
+     <div>{type == "bookmark" ? <Bookmark value={value} />: "" }</div>
+    <div>{objTypes.indexOf(type) == -1  ? `${type} not currently supported!` : "" }</div>
     </main>
-
   )
-  switch (type) {
-
-    case "code":
-      return (
-        <pre className={styles.pre}>
-          <code className={styles.code_block} key={id}>
-            {value.rich_text[0].text.content}
-          </code>
-        </pre>
-      );
-    case "file":
-      const src_file =
-        value.type === "external" ? value.external.url : value.file.url;
-      const splitSourceArray = src_file.split("/");
-      const lastElementInArray = splitSourceArray[splitSourceArray.length - 1];
-      const caption_file = value.caption ? value.caption[0]?.plain_text : "";
-      return (
-        <figure>
-          <div className={styles.file}>
-            📎{" "}
-            <Link href={src_file} passHref>
-              {lastElementInArray.split("?")[0]}
-            </Link>
-          </div>
-          {caption_file && <figcaption>{caption_file}</figcaption>}
-        </figure>
-      );
-    case "bookmark":
-      const href = value.url
-      return (
-        <a href={ href } target="_brank" className={styles.bookmark}>
-          { href }
-        </a>
-      );
-    default:
-      return `❌ Unsupported block (${
-        type === "unsupported" ? "unsupported by Notion API" : type
-      })`;
-  }
 };
 
 export default function Post({ page, blocks }) {

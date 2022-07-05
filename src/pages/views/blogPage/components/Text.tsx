@@ -5,7 +5,6 @@ export const Text:React.FC  = ({ text }) => {
     }
   // @ts-ignore
     return text.map((value) => {
-      console.log(value)
       const {
         text,
       } = value;
