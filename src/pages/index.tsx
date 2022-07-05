@@ -59,6 +59,7 @@ export default function Home({ posts }) {
   );
 }
 
+// Does Initial Pull of Database
 export const getStaticProps = async () => {
   const database = await getDatabase(databaseId);
 

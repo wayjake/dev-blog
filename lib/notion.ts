@@ -1,10 +1,12 @@
 import { Client } from "@notionhq/client";
 
+//Notion Clien Authentication, provides local cookie for access
 const notion = new Client({
     auth: process.env.NOTION_ACCESS_TOKEN,
 });
 
 // @ts-ignore
+// Pull of Database Object/List will return a list of objects (pages)
 export const getDatabase = async (databaseId) => {
   const response = await notion.databases.query({
     //@ts-ignore
@@ -14,12 +16,14 @@ export const getDatabase = async (databaseId) => {
 };
 
 // @ts-ignore
+// Fetches Page Object based on passed pageId
 export const getPage = async (pageId) => {
   const response = await notion.pages.retrieve({ page_id: pageId });
   return response;
 };
 
 // @ts-ignore
+// seperate and return block objects for render on post
 export const getBlocks = async (blockId) => {
   const blocks = [];
   let cursor;
