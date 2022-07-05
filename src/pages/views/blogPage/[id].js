@@ -6,9 +6,11 @@ import { getPage } from "../../../pages/api/Page/getPage"
 import Link from "next/link";
 import { databaseId } from "../../../pages/index";
 import styles from  "../../../../styles/post.module.css";
+import Paragraph from "./components/Paragraph";
 
 // @ts-ignore
 export const Text = ({ text }) => {
+  console.log("text", text)
   if (!text) {
     return null;
   }
@@ -63,34 +65,34 @@ const renderBlock = (block) => {
 
   switch (type) {
     case "paragraph":
-      return (
-        <p>
-          <Text text={value.text} />
-        </p>
-      );
+      // paragraph fixed
+      console.log("paragraph", value)
+      return (<Paragraph text={value.rich_text} />);
     case "heading_1":
+      // heading
+      console.log("heading", value)
       return (
         <h1>
-          <Text text={value.text} />
+          <Text text={value.rich_text} />
         </h1>
       );
     case "heading_2":
       return (
         <h2>
-          <Text text={value.text} />
+          <Text text={value.rich_text} />
         </h2>
       );
     case "heading_3":
       return (
         <h3>
-          <Text text={value.text} />
+          <Text text={value.rich_text} />
         </h3>
       );
     case "bulleted_list_item":
     case "numbered_list_item":
       return (
         <li>
-          <Text text={value.text} />
+          <Text text={value.rich_text} />
           {!!value.children && renderNestedList(block)}
         </li>
       );
@@ -99,15 +101,16 @@ const renderBlock = (block) => {
         <div>
           <label htmlFor={id}>
             <input type="checkbox" id={id} defaultChecked={value.checked} />{" "}
-            <Text text={value.text} />
+            <Text text={value.rich_text} />
           </label>
         </div>
       );
     case "toggle":
+      console.log("toggle:", value)
       return (
         <details>
           <summary>
-            <Text text={value.text} />
+            <Text text={value.rich_text} />
           </summary>
           {value.children?.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
@@ -126,10 +129,12 @@ const renderBlock = (block) => {
           {caption && <figcaption>{caption}</figcaption>}
         </figure>
       );
+      //divider works
     case "divider":
       return <hr key={id} />;
+      //quote fixed
     case "quote":
-      return <blockquote key={id}>{value.text[0].plain_text}</blockquote>;
+      return <blockquote key={id}>{value.rich_text[0].plain_text}</blockquote>;
       // code fixed
     case "code":
       return (
