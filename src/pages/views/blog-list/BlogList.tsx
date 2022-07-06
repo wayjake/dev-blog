@@ -2,16 +2,23 @@ import Link from "next/link";
 import { Text } from "../../../components/blog-post/blocks/Text";
 import { BlogListHeader } from "../../../components/blog-list/BlogListHeader";
 import { Tag } from "../../../components/blog-post/Tag"
+import Page from "../../../types/page";
+import User from "../../../types/user";
+import styled from 'styled-components'; 
 
-//@ts-ignore
-export const BlogList:React.FC  = ({ posts, users }) => {
+interface IBlogListProps {
+  posts: Page[];
+  users: User[];  
+}
 
+export const BlogList:React.FC<IBlogListProps>= ({ posts, users }) => {
 return (
     <div>
     <BlogListHeader />
     <ol>
-          {posts.map((post) => {
-            const date = new Date(post.last_edited_time).toLocaleString(
+          {posts.map((post: Page) => {
+            
+            const date = new Date(post.last_edited_time as string).toLocaleString(
               "en-US",
               {
                 month: "short",

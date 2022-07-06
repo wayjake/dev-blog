@@ -1,7 +1,7 @@
-interface IFile {
+type File = {
   type: string;
   url?: string;
   expiry_time?: string;
 }
 
-export default IFile;
+export default File;

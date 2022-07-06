@@ -1,19 +1,22 @@
-import IUser from './user';
-import IFile from './file';
+import User from './user';
+import File from './file';
 
-interface IPage {
+type Page = {
   object: "page";
   id: string;
   created_time: string;
-  created_by: IUser;
+  created_by: User;
   last_edited_time?: string;
-  last_edited_by?: IUser;
+  last_edited_by?: User;
   archived: boolean;
-  icon?: IFile;
-  cover?: IFile;
-  properties: {};
-  parent?: {};
+  icon?: File;
+  cover?: File;
+  properties: {
+    Name: { title: string }
+    Published: { checkbox: boolean}
+  };
+  parent?: object;
   url: string;
 }
 
-export default IPage;
+export default Page;

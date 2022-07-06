@@ -1,4 +1,4 @@
-interface IUser {
+type User = {
   object: "user";
   id: string;
   type?: string;
@@ -6,4 +6,4 @@ interface IUser {
   avatar_url?: string;
 }
 
-export default IUser;
+export default User;

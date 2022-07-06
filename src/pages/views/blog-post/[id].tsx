@@ -14,9 +14,6 @@ export default function Post({ page, blocks, users }) {
   if (!page || !blocks) {
     return <div />;
   }
-  // console.log("page", page)
-  // console.log("users", users)
-  // styling of image probably needs to be pulled out
   return (
     <div>
       <Head>

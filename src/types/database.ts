@@ -1,22 +1,22 @@
-import IUser from './user';
-import IFile from "./file";
+import User from './user';
+import File from "./file";
 
-interface IDatabase {
+type Database = {
   object: "database";
   id: string;
   created_time: string;
-  created_by: IUser;
+  created_by: User;
   last_edited_time?: string;
-  last_edited_by?: IUser;
+  last_edited_by?: User;
   title: string;
   description: string;
-  icon?: IFile;
-  cover?: IFile;
-  properties: {};
-  parent?: {};
+  icon?: File;
+  cover?: File;
+  properties: object;
+  parent?: object;
   url: string;
   archived: boolean;
   is_inline: boolean;
 }
 
-export default IDatabase;
+export default Database;
