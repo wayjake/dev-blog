@@ -1,17 +1,14 @@
-import Head from "next/head";
 import Link from "next/link";
-import { getDatabase } from "./api/Database/getDatabase";
-import { Text } from './views/blogPage/components/Text';
-import { BlogHome } from "./views/blog-list/BlogHome";
+import { Text } from '../../blogPage/components/Text';
+import { getDatabase } from "../../../api/Database/getDatabase";
+import { Props } from "../models/props";
 
-// @ts-ignore
-export default function Home({ posts }) {
-  return (
-    <div>
-      {/* so this is where blogList should start */}
-      <BlogHome/>   
-        {/** PULL DOWN BELOW INTO BLOG LIST COMPONENTS **/}
-        <ol>
+export const BlogList = ({posts}) => {
+
+
+    return (
+        <div>
+             <ol>
           {posts.map((post) => {
             const date = new Date(post.last_edited_time).toLocaleString(
               "en-US",
@@ -38,20 +35,19 @@ export default function Home({ posts }) {
               </li>
             );
           })}
-        </ol>
-    </div>
-  );
+            </ol>
+        </div>
+    )
 }
 
-// Does Initial Pull of Database
 export const getStaticProps = async () => {
-  console.log("hello");
-  const database = await getDatabase();
-  
-  return {
-    props: {
-      posts: database,
-    },
-    revalidate: 1,
+    console.log("hello");
+    const database = await getDatabase();
+    
+    return {
+      props: {
+        posts: database,
+      },
+      revalidate: 1,
+    };
   };
-};

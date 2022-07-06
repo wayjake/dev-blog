@@ -19,7 +19,6 @@ import Bookmark from "./components/Bookmark";
 export const renderBlock = (block) => {
   const { type, id } = block;
   const value = block[type];
-
   const objTypes = [
     "paragraph", "heading_1", "heading_2", "heading_3", "bulleted_list_item", 
   "numbered_list_item", "to_do", "toggle", "child_page", "image", "bookmark",

@@ -6,10 +6,10 @@ const notion = new Client({
 });
 
 // Pull of Database Object/List will return a list of objects (pages)
-export const getDatabase = async (databaseId: string) => {
+export const getDatabase = async () => {
     const response = await notion.databases.query({
       //@ts-ignore
-      database_id: databaseId,
+      database_id: `${process.env.NOTION_DATABASE_ID}`,
     });
     return response.results;
   };
