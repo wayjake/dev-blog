@@ -26,6 +26,8 @@ export default function Home({ posts }) {
         </header>
 
         <h2 className={styles.heading}>All Posts</h2>
+
+        {/** PULL DOWN BELOW INTO BLOG LIST COMPONENTS **/}
         <ol className={styles.posts}>
           {posts.map((post) => {
             const date = new Date(post.last_edited_time).toLocaleString(

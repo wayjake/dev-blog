@@ -53,6 +53,7 @@ export default function Post({ page, blocks }) {
   if (!page || !blocks) {
     return <div />;
   }
+  // styling of image probably needs to be pulled out
   return (
     <div>
       <Head>
@@ -61,6 +62,7 @@ export default function Post({ page, blocks }) {
       </Head>
 
       <article>
+          <img src={page.cover.external.url} style={{ display: "block", width: "100%", height: "30vh", objectFit: "cover", objectPosition: "center 34.27%" }} /> 
         <h1>
           <Text text={page.properties.Name.title} />
         </h1>
