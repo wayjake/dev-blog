@@ -5,7 +5,6 @@ import { getDatabase } from "../../../pages/api/Database/getDatabase"
 import { getPage } from "../../../pages/api/Page/getPage"
 import Link from "next/link";
 import { databaseId } from "../../../pages/index";
-import { styles } from "../../../../styles/post.module.css"
 import Paragraph from "./components/Paragraph";
 import Text from "./components/Text"
 import List from "./components/List";
@@ -62,7 +61,7 @@ export default function Post({ page, blocks }) {
       </Head>
 
       <article>
-          <img src={page.cover.external.url} style={{ display: "block", width: "100%", height: "30vh", objectFit: "cover", objectPosition: "center 34.27%" }} /> 
+          <img src={page.cover ? page.cover.external.url : ""} style={page.cover? { display: "block", width: "100%", height: "30vh", objectFit: "cover", objectPosition: "center 34.27%" }: {}} /> 
         <h1>
           <Text text={page.properties.Name.title} />
         </h1>
@@ -88,7 +87,7 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-  const { id } = context.params;
+  const id = context.params.id!;
   const page = await getPage(id);
   const blocks = await getBlocks(id);
 
