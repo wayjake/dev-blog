@@ -1,61 +1,16 @@
-import Head from "next/head";
-import Link from "next/link";
-import { getDatabase } from "./api/Database/getDatabase";
-import { Text } from './views/blogPage/components/Text'
-import styles from "../../styles/index.module.css";
+import {BlogList} from "./views/blog-list/BlogList";
+import { getDatabasePosts } from "../api/Database/getDatabasePosts";
+import { getUsers } from "../api/User/getUsers";
+// @ts-ignore
 
 export const databaseId = process.env.NOTION_DATABASE_ID;
 
-// @ts-ignore
-export default function Home({ posts }) {
+export default function Home({ posts, users }) {
+
   return (
     <div>
-      <Head>
-        <title>Dubsado Notion Dev</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <main className={styles.container}>
-        <header className={styles.header}>
-          <div className={styles.logos}>
-          </div>
-          <h1>Dubsado Developer Logs</h1>
-          <p>
-            Here you find all the developer logs currently hosted on Notion
-          </p>
-        </header>
-
-        <h2 className={styles.heading}>All Posts</h2>
-
-        {/** PULL DOWN BELOW INTO BLOG LIST COMPONENTS **/}
-        <ol className={styles.posts}>
-          {posts.map((post) => {
-            const date = new Date(post.last_edited_time).toLocaleString(
-              "en-US",
-              {
-                month: "short",
-                day: "2-digit",
-                year: "numeric",
-              }
-            );
-            return (
-              <li key={post.id} className={styles.post}>
-                <h3 className={styles.postTitle}>
-                  <Link href={`./views/blogPage/${post.id}`}>
-                    <a>
-                      <Text text={post.properties.Name.title} />
-                    </a>
-                  </Link>
-                </h3>
-
-                <p className={styles.postDescription}>{date}</p>
-                <Link href={`./views/blogPage/${post.id}`}>
-                  <a> Read post →</a>
-                </Link>
-              </li>
-            );
-          })}
-        </ol>
+      <main>
+        <BlogList posts={posts} users={users}/>
       </main>
     </div>
   );
@@ -63,11 +18,13 @@ export default function Home({ posts }) {
 
 // Does Initial Pull of Database
 export const getStaticProps = async () => {
-  const database = await getDatabase(databaseId);
+  const databasePosts = await getDatabasePosts();
+  const users = await getUsers();
 
   return {
     props: {
-      posts: database,
+      posts: databasePosts,
+      users: users
     },
     revalidate: 1,
   };

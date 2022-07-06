@@ -1,4 +1,4 @@
-import { renderBlock } from './../[id]'
+import RenderBlock from '../../RenderBlock';
 
 // @ts-ignore
 export const renderNestedList = (block) => {
@@ -11,13 +11,13 @@ export const renderNestedList = (block) => {
     if (isNumberedList) {
       return (
         <ol>
-          {value.children.map((block) => renderBlock(block))}
+          {value.children.map((block) => <RenderBlock key={block.id} block={block} />)}
         </ol>
       )
     }
     return (
       <ul>
-        {value.children.map((block) => renderBlock(block))}
+        {value.children.map((block) => <RenderBlock key={block.id} block={block} />)}
       </ul>
     )
   }

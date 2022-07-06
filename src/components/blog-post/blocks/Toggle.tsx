@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Text } from "./Text";
 import { renderNestedList } from "./NestedList";
-import { renderBlock } from "../[id]";
+import RenderBlock from "../../RenderBlock";
 
 //@ts-ignore
 const Toggle:React.FC = ({  text }) => {
@@ -11,7 +11,7 @@ const Toggle:React.FC = ({  text }) => {
       <Text text={text.rich_text} />
     </summary>
     {text.children?.map((block) => (
-      <Fragment key={block.id}>{renderBlock(block)}</Fragment>
+      <RenderBlock key={block.id} block={block} />
     ))}
     </details>
   )
