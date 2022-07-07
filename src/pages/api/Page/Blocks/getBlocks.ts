@@ -1,5 +1,4 @@
 // @ts-ignore
-
 import { notion } from "../../utils/notion";
 
 // seperate and return block objects for render on post
@@ -18,6 +17,6 @@ export const getBlocks = async (blockId) => {
     }
     cursor = next_cursor;
   }
-  console.log("BLOCK LIST",blocks)
+  // console.log("BLOCK LIST",blocks)
   return blocks;
 };
