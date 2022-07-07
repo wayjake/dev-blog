@@ -1,5 +1,5 @@
 import { Client } from "@notionhq/client";
-import { Page } from "../../types/PageExtraction";
+import { Page } from "../../types/notion-api/PageExtraction";
 //Notion Clien Authentication
 const notion = new Client({
     auth: process.env.NOTION_ACCESS_TOKEN,
@@ -15,15 +15,4 @@ export const getDatabasePosts = async () => {
   return pages;
 }; 
 
-  //   // Pull of Database Object/List will return a list of objects (pages)
-// export const getDatabasePosts = async () => {
-//   const response = await notion.databases.query({
-//     //@ts-ignore
-//     //database id string is used here now
-//     : `${process.env.NOTION_}`,
-    
-//   });
-  
-  
-//   return response.results; 
-// };
+ 
