@@ -1,9 +1,4 @@
-import { Client } from "@notionhq/client";
-
-//Notion Clien Authentication
-const notion = new Client({
-    auth: process.env.NOTION_ACCESS_TOKEN,
-});
+import { notion } from "../utils/notion";
 
 // Pull of Database Object/List will return a list of objects (pages)
 export const getDatabasePosts = async () => {

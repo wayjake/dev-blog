@@ -1,9 +1,4 @@
-import { Client } from "@notionhq/client";
-
-//Notion Clien Authentication
-const notion = new Client({
-    auth: process.env.NOTION_ACCESS_TOKEN,
-});
+import { notion } from "../utils/notion";
 
 export const getUsers = async () => {
     const response = await notion.users.list();
