@@ -27,7 +27,7 @@ return (
               }
             );
 
-            if (post.properties.Published.checkbox){
+            if (post.properties?.Published?.checkbox){
             return (
               <li key={post.id}>
                 <h3>
@@ -41,7 +41,7 @@ return (
             <p>{"by "+users[post.created_by.id]}</p>
             <p>{post.properties.Tags.multi_select[0] ?"Tags: ": ""}<Tag value={post.properties.Tags.multi_select}/></p>               
 
-              <p><Text text={post.properties.Summary.rich_text} /></p>
+              <p><Text text={post.properties.Summary?.rich_text} /></p>
 
                 <p>{date}</p>
                 <Link href={`./views/blog-post/${post.id}`}>
