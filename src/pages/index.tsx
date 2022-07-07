@@ -1,6 +1,6 @@
 import {BlogList} from "./views/blog-list/BlogList";
-import { getDatabasePosts } from "../api/Database/getDatabasePosts";
-import { getUsers } from "../api/User/getUsers";
+import { getDatabasePosts } from "./api/Database/getDatabasePosts";
+import { getUsers } from "./api/User/getUsers";
 import Page from "../types/page";
 import {ThemeProvider } from 'styled-components'
 import GlobalStyle  from '../styles/global'

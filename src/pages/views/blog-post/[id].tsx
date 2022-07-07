@@ -1,13 +1,13 @@
 import { Fragment } from "react";
 import Head from "next/head";
-import { getBlocks } from "../../../api/Page/Blocks/getBlocks";
-import { getDatabasePosts } from "../../../api/Database/getDatabasePosts"
-import { getPage } from "../../../api/Page/getPage"
+import { getBlocks } from "../../api/Page/Blocks/getBlocks";
+import { getDatabasePosts } from "../../api/Database/getDatabasePosts"
+import { getPage } from "../../api/Page/getPage"
 import Link from "next/link";
 import { databaseId } from "../../index";
 import { Text } from "../../../components/blog-post/blocks/Text";
 import RenderBlock from "../../../components/RenderBlock";
-import { getUsers } from "../../../api/User/getUsers";
+import { getUsers } from "../../api/User/getUsers";
 import { Tag } from "../../../components/blog-post/Tag"
 
 export default function Post({ page, blocks, users }) {
