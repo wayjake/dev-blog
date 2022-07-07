@@ -1,12 +1,13 @@
-//@ts-ignore
-export const Image:React.FC = ({ value }) => {
-    const src =
-    value.type === "external" ? value.external.url : value.file.url;
-  const caption = value.caption ? value.caption[0]?.plain_text : "";
+interface ImageProps {
+  imgUrl: string;
+  imgCaption: string;
+}
+
+export const Image = ({ imgUrl, imgCaption }: ImageProps) => {
   return (
     <figure>
-      <img src={src} alt={caption} />
-      {caption && <figcaption>{caption}</figcaption>}
+      <img src={imgUrl} alt={imgCaption} />
+      {imgCaption && <figcaption>{imgCaption}</figcaption>}
     </figure>
   )
 }

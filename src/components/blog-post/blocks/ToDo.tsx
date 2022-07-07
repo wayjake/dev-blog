@@ -1,12 +1,17 @@
 import { Text } from "./Text";
 import { renderNestedList } from "./NestedList";
 
-//@ts-ignore
-export const ToDo:React.FC = ({  text, id }) => {
+interface ToDoProps {
+  text: string;
+  checked: boolean;
+  id: string;
+}
+export const ToDo = ({  text,checked,id }: ToDoProps) => {
+  console.log("TODO TEXT",text)
   return (
     <label htmlFor={id}>
-    <input type="checkbox" id={id} defaultChecked={text.checked} />{" "}
-    <Text text={text.rich_text} />
+    <input type="checkbox" id={id} defaultChecked={checked} />{" "}
+    <Text text={text} />
   </label>
   )
 }

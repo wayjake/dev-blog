@@ -2,23 +2,23 @@ import Link from "next/link";
 import { Text } from "../../../components/blog-post/blocks/Text";
 import { BlogListHeader } from "../../../components/blog-list/BlogListHeader";
 import { Tag } from "../../../components/blog-post/Tag"
-import Page from "../../../types/page";
-import User from "../../../types/user";
+import { Page } from "../../../types/notion-api/PageExtraction";
+import { UserData } from "../../../types/notion-api/UserDataExtraction";
 import styled from 'styled-components'; 
 
-interface IBlogListProps {
+interface BlogListProps {
   posts: Page[];
-  users: User[];  
+  users: UserData[];
 }
 
-export const BlogList:React.FC<IBlogListProps>= ({ posts, users }) => {
-return (
-    <div>
+export const BlogList: React.FC = ({ posts, users }: BlogListProps) => {
+  console.log("post properties Name title", posts[2].properties.Name.title)
+  return (
+    <div className="w-container">
     <BlogListHeader />
     <ol>
-          {posts.map((post: Page) => {
-            
-            const date = new Date(post.last_edited_time as string).toLocaleString(
+          {posts.map((post: any) => {
+            const date = new Date(post.last_edited_time).toLocaleString(
               "en-US",
               {
                 month: "short",
@@ -33,15 +33,15 @@ return (
                 <h3>
                   <Link href={`./views/blog-post/${post.id}`}>
                     <a>
-                      <Text text={post.properties.Name.title} />
+                      <Text text={post.properties.Name?.title[0]?.text?.content} />
                     </a>
                   </Link>
                 </h3>
-                    
+
             <p>{"by "+users[post.created_by.id]}</p>
             <p>{post.properties.Tags.multi_select[0] ?"Tags: ": ""}<Tag value={post.properties.Tags.multi_select}/></p>               
 
-              <p><Text text={post.properties.Summary.rich_text} /></p>
+              <p><Text text={post.properties.Summary?.rich_text[0]?.text?.content} /></p>
 
                 <p>{date}</p>
                 <Link href={`./views/blog-post/${post.id}`}>
@@ -49,12 +49,11 @@ return (
                 </Link>
               </li>
             );
-          } else return null;
+          } else return (<span></span>);
           })}
         </ol>
     </div>
     )
  }
-
-
+ 
  export default BlogList;

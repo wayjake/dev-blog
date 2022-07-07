@@ -1,8 +1,13 @@
 import User from './user';
 import File from './file';
+import {
+  CreatePageParameters,
+  QueryDatabaseResponse,
+} from "@notionhq/client/build/src/api-endpoints"; 
+
 
 type Page = {
-  object: "page";
+  object: 'page';
   id: string;
   created_time: string;
   created_by: User;
@@ -11,8 +16,8 @@ type Page = {
   archived: boolean;
   icon?: File;
   cover?: File;
-  properties?: {
-    Name: { title: string }
+  properties: {
+    Name: { title: string | object[] }
     Published: { checkbox: boolean}
     Tags: { multi_select: string[] }
     Summary: { rich_text: string }

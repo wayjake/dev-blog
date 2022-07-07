@@ -1,15 +1,19 @@
-import { Client } from "@notionhq/client";
-
-//Notion Clien Authentication
-const notion = new Client({
-    auth: process.env.NOTION_ACCESS_TOKEN,
-});
-
+import notion from "../Client";
+import {UserData} from "../../types/notion-api/UserDataExtraction";
+import User from "../../types/user"
+interface test  {
+    userArray: UserData[],
+}
+interface testUsers {
+    id: string,
+    name: string
+}
 export const getUsers = async () => {
     const response = await notion.users.list();
-    let userData = response.results
+    let userData: UserData[] = response.results
     console.log(`[getUsers] userData:`, userData);
-    let users = Object.assign({}, ...userData.map((user) => ({[user.id]: user.name})));
-    return users
+    let users: User[] = Object.assign({}, ...userData.map((user) => ({[user.id]: user.name})));
+    console.log(`[getUsers] users:`, users);
+    return users;
 }
 

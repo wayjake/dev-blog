@@ -1,10 +1,6 @@
-type User = {
-  object: "user";
-  id: string;
-  type?: string;
-  name?: string;
-  avatar_url?: string;
-  person?: { email?: string };
+interface User {
+  id: string, 
+  name: string
 }
 
 export default User;

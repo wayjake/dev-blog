@@ -1,9 +1,14 @@
 //@ts-ignore
-const Code:React.FC = ({  text, id }) => {
+interface CodeProps {
+  text?: string;
+  id: string;
+}
+
+const Code = ({  text, id }: CodeProps) => {
   return (
     <pre>
         <code key = {id}>
-        {text.rich_text[0].text.content}
+        {text}
         </code>
     </pre>
 

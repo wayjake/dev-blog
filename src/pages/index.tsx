@@ -1,21 +1,16 @@
 import {BlogList} from "./views/blog-list/BlogList";
 import { getDatabasePosts } from "../api/Database/getDatabasePosts";
 import { getUsers } from "../api/User/getUsers";
-import Page from "../types/page";
 import {ThemeProvider } from 'styled-components'
-import GlobalStyle  from '../styles/global'
+import  Database  from "../types/database"; 
+import { Page } from "../types/notion-api/PageExtraction";
+import { UserData } from "../types/notion-api/UserDataExtraction";
 
-// @ts-ignore
 
-export const databaseId = process.env.NOTION_DATABASE_ID;
 
-interface IHomeProps {
-  posts: Page[];
-  users: { [key: string]: string };  
-}
-
-export default function Home({ posts, users}: IHomeProps) {
-
+export default function Home({ posts, users}) {
+console.log("postCollection", posts)
+console.log("users", users)
   return (
     <div>
         <BlogList posts={posts} users={users}/>
@@ -35,4 +30,5 @@ export const getStaticProps = async () => {
     },
     revalidate: 1,
   };
+ 
 };

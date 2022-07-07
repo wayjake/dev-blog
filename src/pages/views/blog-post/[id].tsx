@@ -4,16 +4,27 @@ import { getBlocks } from "../../../api/Page/Blocks/getBlocks";
 import { getDatabasePosts } from "../../../api/Database/getDatabasePosts"
 import { getPage } from "../../../api/Page/getPage"
 import Link from "next/link";
-import { databaseId } from "../../index";
 import { Text } from "../../../components/blog-post/blocks/Text";
 import RenderBlock from "../../../components/RenderBlock";
 import { getUsers } from "../../../api/User/getUsers";
 import { Tag } from "../../../components/blog-post/Tag"
+import Page from "../../../types/page";
+import Block from "../../../types/block";
+import User from "../../../types/user";
 
-export default function Post({ page, blocks, users }) {
+interface PostProps {
+  page: Page;
+  blocks: Block[];
+  users: User[];
+}
+
+export default function Post({ page, blocks, users }: PostProps) {
   if (!page || !blocks) {
     return <div />;
   }
+  console.log("BLOCKZ", blocks)
+  console.log("pagez", page)
+  console.log("userz", users)
   return (
     <div>
       <Head>
@@ -25,7 +36,7 @@ export default function Post({ page, blocks, users }) {
         {/* {blog header} */}
           <img src={page.cover ? page.cover.external.url : ""} style={page.cover? { display: "block", width: "100%", height: "30vh", objectFit: "cover", objectPosition: "center 34.27%" }: {}} /> 
         <h1>
-          <Text text={page.properties.Name.title} />
+        <Text text={page.properties.Name?.title[0]?.text?.content} />
         </h1>
         <p>{"by "+users[page.created_by.id]}</p> 
         <p>{page.properties.Tags.multi_select[0] ?"Tags: ": ""}<Tag value={page.properties.Tags.multi_select}/></p>    
@@ -41,7 +52,7 @@ export default function Post({ page, blocks, users }) {
 }
 
 export const getStaticPaths = async () => {
-  const database = await getDatabasePosts(databaseId);
+  const database = await getDatabasePosts();
   return {
     paths: database.map((page) => ({ params: { id: page.id } })),
     fallback: true,
