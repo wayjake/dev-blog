@@ -1,4 +1,4 @@
-import RenderBlock from '../../RenderBlock';
+import RenderBlock from './RenderBlock';
 
 export const renderNestedList = (listType: any, block: any) => {
     const { type } = block;

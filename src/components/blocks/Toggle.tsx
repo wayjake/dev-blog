@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Text } from "./Text";
 import { renderNestedList } from "./NestedList";
-import RenderBlock from "../../RenderBlock";
+import RenderBlock from "./RenderBlock";
 
 interface ToggleProps {
   text?: string;

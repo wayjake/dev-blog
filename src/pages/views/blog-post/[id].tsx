@@ -1,5 +1,13 @@
-import { Fragment } from "react";
+import { getBlocks } from "../../api/Page/Blocks/getBlocks";
+import { getDatabasePosts } from "../../api/Database/getDatabasePosts"
+import { getPage } from "../../api/Page/getPage"
+
+import { databaseId } from "../../api/utils/notion";
+
+import { getUsers } from "../../api/User/getUsers";
+import BlogPost from "../../../components/blog-post/BlogPost";
 import Head from "next/head";
+<<<<<<< HEAD
 import { getBlocks } from "../../../api/Page/Blocks/getBlocks";
 import { getDatabasePosts } from "../../../api/Database/getDatabasePosts"
 import { getPage } from "../../../api/Page/getPage"
@@ -49,13 +57,24 @@ export default function Post({ page, blocks, users }: PostProps) {
       </article>
     </div>
   );
+=======
+
+export default function Post({ page, blocks, users }) {
+  return <>
+    <Head>
+      <title>{page.properties.Name.title[0].plain_text}</title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <BlogPost page={page} blocks={blocks} users={users} />
+  </>
+>>>>>>> 9e3b938b4b9bbceeef01e41d98a34bd4f1170981
 }
 
 export const getStaticPaths = async () => {
   const database = await getDatabasePosts();
   return {
     paths: database.map((page) => ({ params: { id: page.id } })),
-    fallback: true,
+    fallback: false,
   };
 };
 
