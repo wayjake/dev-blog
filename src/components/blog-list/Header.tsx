@@ -6,7 +6,7 @@ export const Header = () =>{
             <header>
             <div>
             </div>
-            <h1>Dubsado Developer Logs</h1>
+            <h1>Dubsado Developer Blog</h1>
             <p>
                 Here you find all the developer logs currently hosted on Notion
             </p>
