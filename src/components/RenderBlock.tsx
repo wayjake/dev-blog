@@ -1,8 +1,28 @@
 
 import { Bookmark, Code, File, Image, List, Paragraph, Text, ToDo, Toggle } from "../components/blog-post"
-export const RenderBlock = ({ block }) => {
-  const { type, id } = block;
-  const value = block[type];
+import Block from "../types/block";
+
+interface Props {
+  block: Block
+}
+
+interface Value {
+  rich_text: string;
+  title: string;
+  text: object;
+  url?: string;
+  external: { url: string };
+  file: { url: string };
+  type: string;
+  caption?: any;
+}
+
+export const RenderBlock: React.FC<Props> = ({ block }) => {
+  const type: keyof Block = block.type;
+  const id = block.id;
+  const value: Value = block[type] as Value;
+  console.log("value", value)
+  
 
   const typeMap = new Map([
     ["paragraph", <Paragraph text={value.rich_text}/>],

@@ -1,7 +1,6 @@
 import RenderBlock from '../../RenderBlock';
 
-// @ts-ignore
-export const renderNestedList = (block) => {
+export const renderNestedList = (block: any) => {
     const { type } = block;
     const value = block[type];
     if (!value) return null;
@@ -11,13 +10,13 @@ export const renderNestedList = (block) => {
     if (isNumberedList) {
       return (
         <ol>
-          {value.children.map((block) => <RenderBlock key={block.id} block={block} />)}
+          {value.children.map((block: any) => <RenderBlock key={block.id} block={block} />)}
         </ol>
       )
     }
     return (
       <ul>
-        {value.children.map((block) => <RenderBlock key={block.id} block={block} />)}
+        {value.children.map((block: any) => <RenderBlock key={block.id} block={block} />)}
       </ul>
     )
   }

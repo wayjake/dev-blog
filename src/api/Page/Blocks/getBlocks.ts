@@ -22,6 +22,6 @@ export const getBlocks = async (blockId) => {
     }
     cursor = next_cursor;
   }
-  // console.log(blocks)
+  console.log("BLOCK LIST",blocks)
   return blocks;
 };

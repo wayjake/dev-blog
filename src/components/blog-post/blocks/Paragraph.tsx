@@ -1,7 +1,6 @@
 import { Text } from "./Text";
 
-//@ts-ignore
-const Paragraph:React.FC = ({ text }) => {
+const Paragraph:React.FC = ({ text }: any) => {
   return (
     <p>
       <Text text={text} />

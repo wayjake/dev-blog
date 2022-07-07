@@ -4,6 +4,7 @@ type User = {
   type?: string;
   name?: string;
   avatar_url?: string;
+  person?: { email?: string };
 }
 
 export default User;

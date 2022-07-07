@@ -1,10 +1,21 @@
-//@ts-ignore
-export const Text:React.FC  = ({ text }) => {
+interface TextProps {
+  // annotations: {
+  //   bold: string;
+
+  // }
+  text: {
+    link: { url: string}
+    content: string
+  }
+}
+
+
+export const Text: React.FC = ({ text }: TextProps) => {
+  console.log("[Text.tsx]:", text);
     if (!text) {
       return null;
     }
-  // @ts-ignore
-    return text.map((value) => {
+    return text.map((value: any) => {
       const {
         text,
       } = value;

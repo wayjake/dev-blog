@@ -11,9 +11,11 @@ type Page = {
   archived: boolean;
   icon?: File;
   cover?: File;
-  properties: {
+  properties?: {
     Name: { title: string }
     Published: { checkbox: boolean}
+    Tags: { multi_select: string[] }
+    Summary: { rich_text: string }
   };
   parent?: object;
   url: string;
