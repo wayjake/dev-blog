@@ -1,16 +1,12 @@
 import Head from "next/head";
 
-export const BlogListHeader = () =>{
+export const Header = () =>{
     return (
         <div>
-        <Head>
-        <title>Dubsado Notion Dev</title>
-        <link rel="icon" href="/favicon.ico" />
-        </Head>
             <header>
             <div>
             </div>
-            <h1>Dubsado Developer Logs</h1>
+            <h1>Dubsado Developer Blog</h1>
             <p>
                 Here you find all the developer logs currently hosted on Notion
             </p>
