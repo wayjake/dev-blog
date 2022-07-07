@@ -1,8 +1,8 @@
 import Head from "next/head";
 import Link from "next/link";
-import RenderBlock from "../blocks/RenderBlock";
-import Tag from "../blocks/Tag";
-import Text from "../blocks/Text";
+import {Tag, Text, RenderBlock} from "../blocks";
+import {StyledBlogPost} from './BlogPost.Styled'
+import style from 'styled-jsx'
 
 export default function BlogPost({ page, blocks, users }) {
   if (!page || !blocks) {
@@ -10,11 +10,6 @@ export default function BlogPost({ page, blocks, users }) {
   }
   return (
     <div>
-      <Head>
-        <title>{page.properties.Name.title[0].plain_text}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <article>
         {/* {blog header} */}
           <img src={page.cover ? page.cover.external.url : ""} style={page.cover? { display: "block", width: "100%", height: "30vh", objectFit: "cover", objectPosition: "center 34.27%" }: {}} /> 
@@ -30,6 +25,12 @@ export default function BlogPost({ page, blocks, users }) {
           </Link>
         </section>
       </article>
+
+      <style jsx>{`
+        h1 {
+          text-decoration: underline;
+        }
+      `}</style>
     </div>
   );
 }

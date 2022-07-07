@@ -1,12 +1,8 @@
 import Head from "next/head";
 
-export const BlogListHeader = () =>{
+export const Header = () =>{
     return (
         <div>
-        <Head>
-        <title>Dubsado Notion Dev</title>
-        <link rel="icon" href="/favicon.ico" />
-        </Head>
             <header>
             <div>
             </div>

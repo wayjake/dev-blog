@@ -6,9 +6,16 @@ import { databaseId } from "../../api/utils/notion";
 
 import { getUsers } from "../../api/User/getUsers";
 import BlogPost from "../../../components/blog-post/BlogPost";
+import Head from "next/head";
 
 export default function Post({ page, blocks, users }) {
-  return <BlogPost page={page} blocks={blocks} users={users}/>
+  return <>
+    <Head>
+      <title>{page.properties.Name.title[0].plain_text}</title>
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <BlogPost page={page} blocks={blocks} users={users} />
+  </>
 }
 
 export const getStaticPaths = async () => {

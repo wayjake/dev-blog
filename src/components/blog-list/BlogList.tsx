@@ -1,21 +1,19 @@
 import Link from "next/link";
-import { Text } from "../../../components/blocks/Text";
-import { BlogListHeader } from "../../../components/blog-list/BlogListHeader";
-import { Tag } from "../../../components/blocks/Tag"
-import Page from "../../../types/page";
-import User from "../../../types/user";
-import styled from 'styled-components'; 
+import Page from "../../types/page";
+import User from "../../types/user";
+import {Tag, Text} from "../blocks";
+import { Header } from "./Header";
 
 interface IBlogListProps {
   posts: Page[];
   users: User[];  
 }
 
-export const BlogList:React.FC<IBlogListProps>= ({ posts, users }) => {
+const BlogList:React.FC<IBlogListProps>= ({ posts, users }) => {
 return (
     <div>
-    <BlogListHeader />
-    <ol>
+        <Header />
+        <ol>
           {posts.map((post: Page) => {
             
             const date = new Date(post.last_edited_time as string).toLocaleString(

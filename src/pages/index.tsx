@@ -1,12 +1,12 @@
-import {BlogList} from "./views/blog-list/BlogList";
+import {BlogList} from "../components/blog-list";
 import { getDatabasePosts } from "./api/Database/getDatabasePosts";
 import { getUsers } from "./api/User/getUsers";
 import Page from "../types/page";
 import {ThemeProvider } from 'styled-components'
 import GlobalStyle  from '../styles/global'
+import Head from "next/head";
 
 // @ts-ignore
-
 interface IHomeProps {
   posts: Page[];
   users: { [key: string]: string };  
@@ -16,6 +16,10 @@ export default function Home({ posts, users}: IHomeProps) {
 
   return (
     <div>
+        <Head>
+          <title>Dubsado Notion Dev</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
         <BlogList posts={posts} users={users}/>
     </div>
   );
