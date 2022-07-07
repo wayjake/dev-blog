@@ -1,13 +1,17 @@
 import { Text } from "./Text";
 import { renderNestedList } from "./NestedList";
 
-//@ts-ignore
-const List:React.FC = ({ type, text }) => {
+interface ListProps {
+  type: string;
+  text: string;
+}
+
+const List = ({ type, text }: ListProps) => {
   return (
     <li>
     <Text text={text} />
-    {!!type.children && renderNestedList(block)}
-  </li>); 
+    </li>
+  ); 
 }
 
 export default List;

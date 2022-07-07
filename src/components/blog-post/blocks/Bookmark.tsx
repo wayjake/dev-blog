@@ -8,7 +8,7 @@ interface Props {
 export const Bookmark:React.FC<Props> = ({ value }) => {
     const href = value.url
     return (
-      <a href={ href } target="_brank">
+      <a href={ href } target="_blank">
         { href }
       </a>
     );

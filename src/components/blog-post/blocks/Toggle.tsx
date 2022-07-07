@@ -3,16 +3,19 @@ import { Text } from "./Text";
 import { renderNestedList } from "./NestedList";
 import RenderBlock from "../../RenderBlock";
 
-//@ts-ignore
-const Toggle:React.FC = ({  text }) => {
+interface ToggleProps {
+  text?: string;
+  toggleContent?: string;  
+}
+
+export const Toggle = ({  text, toggleContent }: ToggleProps) => {
+  console.log("Toggle Component:", toggleContent)
   return (
     <details>
     <summary>
-      <Text text={text.rich_text} />
+      <Text text={text} />
     </summary>
-    {text.children?.map((block) => (
-      <RenderBlock key={block.id} block={block} />
-    ))}
+      <Text text={toggleContent} />
     </details>
   )
 }

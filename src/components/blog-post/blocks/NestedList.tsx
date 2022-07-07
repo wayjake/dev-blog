@@ -1,13 +1,13 @@
 import RenderBlock from '../../RenderBlock';
 
-export const renderNestedList = (block: any) => {
+export const renderNestedList = (listType: any, block: any) => {
     const { type } = block;
     const value = block[type];
     if (!value) return null;
+
+
   
-    const isNumberedList = value.children[0].type === 'numbered_list_item'
-  
-    if (isNumberedList) {
+    if (listType === 'numbered_list_item') {
       return (
         <ol>
           {value.children.map((block: any) => <RenderBlock key={block.id} block={block} />)}

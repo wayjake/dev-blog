@@ -7,24 +7,24 @@ interface Props {
 }
 
 interface Value {
-  rich_text: [{
-    text: {
+  rich_text?: [{
+    text?: {
       content: string;
       url: string;
     }
   }];
-  children: [{
+  children?: [{
     type: string;
   }]
-  title: string;
-  text: object;
+  title?: string;
+  text?: object;
   url?: string;
-  external: { url: string };
-  file: { url: string };
-  type: string;
+  external?: { url: string };
+  file?: { url: string };
+  type?: string;
   caption?: any;
-  checked: boolean;
-  color: string;
+  checked?: boolean;
+  color?: string;
 }
 export const RenderBlock: React.FC = ({ block }) => {
 console.log("BLOCKZ", block)
@@ -42,10 +42,15 @@ console.log("BLOCKZ", block)
     ["heading_1", <h1><Text text={value.rich_text?.text?.content} /></h1>],
     ["heading_2", <h2><Text text={value.rich_text?.text?.content}/></h2> ],
     ["heading_3", <h3><Text text={value.rich_text?.text?.content}/></h3>],
-    // ["bulleted_list_item", <List type={type} text={value.rich_text?.text?.content} />],
-    // ["numbered_list_item", <List type={value.children[0]?.type} text={value.rich_text?.text?.content} />],        
+    ["bulleted_list_item", <List type={type} text={value.rich_text ? value.rich_text[0].text?.content:""} />],
+    // numbered list not currently rendering properly, item will be unordered list for now
+    ["numbered_list_item", <List type={type} text={value.rich_text ? value.rich_text[0].text?.content:""} />],        
     ["to_do", <ToDo text={value.rich_text ? value.rich_text[0].plain_text: ""} checked={value.checked} id={id}/>],
-    // ["toggle", <Toggle text={value.rich_text?.text?.content} id={id}/>],
+    ["toggle", <Toggle 
+      text={value.rich_text ? value.rich_text[0]?.text?.content: ""} 
+      toggleContent={value.children ? 
+        value.children[0].paragraph?.rich_text ? value.children[0].paragraph?.rich_text[0].text.content : "" : ""}
+      />],
     ["child_page", <p>Page: {value.title}, linking to pages not currently supported!</p>],
     ["image", <Image 
       imgUrl={value.type == "external"? value.external?.url : value.file?.url }
@@ -54,7 +59,7 @@ console.log("BLOCKZ", block)
     ["divider", <hr key={id}/>],
     ["quote", <blockquote><Text text={value.rich_text ? value.rich_text[0].text?.content: ""}/></blockquote>],
     ["code", <Code text={value.rich_text ? value.rich_text[0].text?.content : ""} id={id}/>],
-    ["file", <File value={value} type={type}/>],
+    ["file", <File value={value}/>],
     ["bookmark", <Bookmark value={value} />],
   ])
 
@@ -63,7 +68,7 @@ console.log("BLOCKZ", block)
       <div>{`${type} not currently supported!`}</div>
     )
   }
-
+  
   return (
     <div>
       {typeMap.get(type)}

@@ -5,8 +5,8 @@ import GlobalStyle  from '../styles/global'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-      <div>
-        <GlobalStyle/>
+    <div>
+      <GlobalStyle/>
       <Component {...pageProps} />
     </div>
   )
