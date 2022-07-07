@@ -1,50 +1,21 @@
-import { Fragment } from "react";
-import Head from "next/head";
 import { getBlocks } from "../../api/Page/Blocks/getBlocks";
 import { getDatabasePosts } from "../../api/Database/getDatabasePosts"
 import { getPage } from "../../api/Page/getPage"
-import Link from "next/link";
-import { databaseId } from "../../index";
-import { Text } from "../../../components/blog-post/blocks/Text";
-import RenderBlock from "../../../components/RenderBlock";
+
+import { databaseId } from "../../api/utils/notion";
+
 import { getUsers } from "../../api/User/getUsers";
-import { Tag } from "../../../components/blog-post/Tag"
+import BlogPost from "../../../components/blog-post/BlogPost";
 
 export default function Post({ page, blocks, users }) {
-  if (!page || !blocks) {
-    return <div />;
-  }
-  return (
-    <div>
-      <Head>
-        <title>{page.properties.Name.title[0].plain_text}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <article>
-        {/* {blog header} */}
-          <img src={page.cover ? page.cover.external.url : ""} style={page.cover? { display: "block", width: "100%", height: "30vh", objectFit: "cover", objectPosition: "center 34.27%" }: {}} /> 
-        <h1>
-          <Text text={page.properties.Name.title} />
-        </h1>
-        <p>{"by "+users[page.created_by.id]}</p> 
-        <p>{page.properties.Tags.multi_select[0] ?"Tags: ": ""}<Tag value={page.properties.Tags.multi_select}/></p>    
-        <section>
-          {blocks.map((block:any) => ( <RenderBlock key={block.id} block={block} /> ))}
-          <Link href="/">
-            <a>← Go home</a>
-          </Link>
-        </section>
-      </article>
-    </div>
-  );
+  return <BlogPost page={page} blocks={blocks} users={users}/>
 }
 
 export const getStaticPaths = async () => {
   const database = await getDatabasePosts(databaseId);
   return {
     paths: database.map((page) => ({ params: { id: page.id } })),
-    fallback: true,
+    fallback: false,
   };
 };
 

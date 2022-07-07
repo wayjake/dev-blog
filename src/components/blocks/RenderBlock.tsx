@@ -1,6 +1,14 @@
 
-import { Bookmark, Code, File, Image, List, Paragraph, Text, ToDo, Toggle } from "../components/blog-post"
-import Block from "../types/block";
+import Block from "../../types/block";
+import Bookmark from "./Bookmark";
+import Code from "./Code";
+import File from "./File";
+import Image from "./Image";
+import List from "./List";
+import Paragraph from "./Paragraph";
+import Text from "./Text";
+import ToDo from "./ToDo";
+import Toggle from "./Toggle";
 
 interface Props {
   block: Block

@@ -7,8 +7,6 @@ import GlobalStyle  from '../styles/global'
 
 // @ts-ignore
 
-export const databaseId = process.env.NOTION_DATABASE_ID;
-
 interface IHomeProps {
   posts: Page[];
   users: { [key: string]: string };  

@@ -1,7 +1,7 @@
 import Link from "next/link";
-import { Text } from "../../../components/blog-post/blocks/Text";
+import { Text } from "../../../components/blocks/Text";
 import { BlogListHeader } from "../../../components/blog-list/BlogListHeader";
-import { Tag } from "../../../components/blog-post/Tag"
+import { Tag } from "../../../components/blocks/Tag"
 import Page from "../../../types/page";
 import User from "../../../types/user";
 import styled from 'styled-components'; 
