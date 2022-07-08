@@ -7,4 +7,4 @@ import {
   export type PageProperties = Pick<CreatePageParameters, "properties">;
   
   // this exports the Page type we get from the Database
-  export type Page = GetPageResponse; 
+  export type Pages = GetPageResponse; 

@@ -4,6 +4,7 @@ import {Tag, Text} from "../blocks";
 import { Post } from "../../types/props/componentProps";
 import { Header } from "./Header";
 import { initProps } from "../../types/props/initialProps";
+import Card from "./Card";
 
 export const BlogList:React.FC<initProps>= ({ posts, users }) => {
 
@@ -27,6 +28,7 @@ export const BlogList:React.FC<initProps>= ({ posts, users }) => {
 
             return (
               <li key={post.id}>
+                <Card title="Why We Switched from Lastpass to Bitwarden" date={new Date()} body="I am a summary of what this post is about or I am possibly the first X amount of characters from the first available text blocks." />
                 <h3>
                   <Link href={`./views/blog-post/${post.id}`}>
                     <a>

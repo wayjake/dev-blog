@@ -23,9 +23,9 @@ export const RenderBlock: React.FC<any> = ({ block }) => {
     ["heading_1", <h1><Text text={value.rich_text?.text?.content} /></h1>],
     ["heading_2", <h2><Text text={value.rich_text?.text?.content}/></h2> ],
     ["heading_3", <h3><Text text={value.rich_text?.text?.content}/></h3>],
-    ["bulleted_list_item", <List type={type} text={value.rich_text ? value.rich_text[0].text?.content:""} />],
+    ["bulleted_list_item", <List id={id} type={type} text={value.rich_text ? value.rich_text[0].text?.content:""} />],
     // numbered list not currently rendering properly, item will be unordered list for now
-    ["numbered_list_item", <List type={type} text={value.rich_text ? value.rich_text[0].text?.content:""} />],        
+    ["numbered_list_item", <List id={id} type={type} text={value.rich_text ? value.rich_text[0].text?.content:""} />],        
     ["to_do", <ToDo text={value.rich_text ? value.rich_text[0].plain_text: ""} checked={value.checked} id={id}/>],
     ["toggle", <Toggle 
       text={value.rich_text ? value.rich_text[0]?.text?.content: ""} 

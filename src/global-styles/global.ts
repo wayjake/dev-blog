@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
+// TODO Use local source files
 // background-image: url("/images/Main-Background.png");
 
 const GlobalStyle = createGlobalStyle`

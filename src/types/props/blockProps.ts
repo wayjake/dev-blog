@@ -26,6 +26,7 @@ export interface ImageProp {
 export interface ListProp {
     type: string;
     text: string;
+    id: string;
 }
 
 export interface TextProp {
@@ -48,4 +49,5 @@ export interface TagProps {
 export interface TagProp extends TagProps {
     color: string
     name: string
+    id: string
   }  

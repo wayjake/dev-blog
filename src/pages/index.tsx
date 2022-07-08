@@ -2,7 +2,7 @@ import NavBar from "../components/nav-bar/NavBar";
 import {BlogList} from "../components/blog-list";
 import { getDatabasePosts } from "./api/Database/getDatabasePosts";
 import { getUsers } from "./api/User/getUsers";
-import { Page } from "../types/notion-api/Page";
+import { Pages } from "../types/notion-api/PageResponse";
 import {ThemeProvider } from 'styled-components'
 import Head from "next/head";
 import { initProps } from "../types/props/initialProps";
@@ -13,7 +13,7 @@ import { initProps } from "../types/props/initialProps";
 export default function Home({ posts, users }: initProps) {
   console.log("here are the posts", posts); 
   if("created_time" in posts[0]){
-    console.log('createdTime', posts[0].created_time)
+    console.log('createdTime', posts[0].created_time);
   }
   return (
         <BlogList posts={posts} users={users}/>
