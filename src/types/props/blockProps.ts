@@ -42,3 +42,10 @@ export interface ToggleProp {
     text?: string;
     toggleContent?: string;  
   }
+export interface TagProps {
+    values: TagProp[] | null
+  }
+export interface TagProp extends TagProps {
+    color: string
+    name: string
+  }  

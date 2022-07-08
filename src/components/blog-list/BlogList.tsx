@@ -1,69 +1,11 @@
 import Link from "next/link";
 import { title } from "process";
-import { Page } from "../../types/notion-api/Page";
-import { User } from "../../types/notion-api/User";
 import {Tag, Text} from "../blocks";
-import { TagProp } from "../blocks/Tag";
+import { Post } from "../../types/props/componentProps";
 import { Header } from "./Header";
 import { initProps } from "../../types/props/initialProps";
 
-interface BlogListProps {
-  posts: Post[];
-  users: User[];
-}
-
-export interface Post {
-  archived?: boolean;
-  cover?: {
-    external: {
-      url: string;
-    }
-  }
-  created_by: {
-    id: string
-  }
-  icon?: string | null;
-  id?: string
-  lasted_edited_by?: { 
-    id: string 
-  };
-  last_edited_time?: string;
-  object?: string
-  parent?: {
-    type: string
-    database_id: string
-  }
-  url?: string;
-  properties: {
-    Published?: {
-      checkbox: boolean
-    }
-    Name?: {
-       title: {
-        [key: string]: {
-          plain_text?: string
-          text: {
-          content: string
-          }
-        }
-     }
-  }
-    Tags?: {
-      multi_select: TagProp[]
-    }
-    Summary?: {
-      rich_text:{
-        [key: string]: {
-          text: {
-            content: string
-          }
-        }
-      }
-    }
-  }
-}
-export const BlogList:React.FC<BlogListProps>= ({ posts, users }) => {
-// export const BlogList:React.FC<initProps>= ({ posts, users }) => {
+export const BlogList:React.FC<initProps>= ({ posts, users }) => {
 
   console.log("posts", posts); 
   return (

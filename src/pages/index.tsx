@@ -6,11 +6,15 @@ import { Page } from "../types/notion-api/Page";
 import {ThemeProvider } from 'styled-components'
 import Head from "next/head";
 import { initProps } from "../types/props/initialProps";
-import { Post } from "../components/blog-list/BlogList";
+//import { Post } from "../components/blog-list/BlogList";
 // @ts-ignore
 
 
 export default function Home({ posts, users }: initProps) {
+  console.log("here are the posts", posts); 
+  if("created_time" in posts[0]){
+    console.log('createdTime', posts[0].created_time)
+  }
   return (
         <BlogList posts={posts} users={users}/>
   );
@@ -21,7 +25,7 @@ export const getStaticProps = async () => {
   const databasePosts = await getDatabasePosts();
   const users = await getUsers();
   // let props: initProps = {
-  let props: any = { 
+  let props: initProps = { 
     posts: databasePosts, 
     users: users, 
   }
