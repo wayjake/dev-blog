@@ -4,7 +4,7 @@ import {Tag, Text} from "../blocks";
 import { Post } from "../../types/props/componentProps";
 import { Header } from "./Header";
 import { initProps } from "../../types/props/initialProps";
-import Card from "./Card";
+import Card from "../shared/Card";
 import { Pages  } from "../../types/notion-api/PageResponse";
 import { BlogListProps } from "../../types/props/componentProps";
 

@@ -8,6 +8,7 @@ import { getUsers } from "../../api/User/getUsers";
 import BlogPost from "../../../components/blog-post/BlogPost";
 import Head from "next/head";
 import { BlogPostProps } from "../../../types/props/componentProps";
+import Card from "../../../components/shared/Card";
 
 export default function Post({ page, blocks, users }: BlogPostProps) {
   return <>
@@ -15,7 +16,17 @@ export default function Post({ page, blocks, users }: BlogPostProps) {
       <title>{page?.properties?.Name?.title[0].plain_text}</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <BlogPost page={page} blocks={blocks} users={users} />
+    <Card              
+      title={page.properties.Name?.title[0]?.text?.content} 
+      date={new Date(page.last_edited_time as string)} 
+      tags={page.properties?.Tags?.multi_select} 
+      body={page.properties.Summary?.rich_text[0]?.text?.content} 
+      blogPost={true}
+      page={page}
+      blocks={blocks}
+      users={users}
+      image={page.cover?.external.url}
+      />
   </>
 }
 
