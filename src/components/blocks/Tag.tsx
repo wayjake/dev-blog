@@ -16,7 +16,7 @@ export const Tag = ({ values }: TagProps) => {
         color
       } = value;
       return (
-      <span key={value.id} style={{backgroundColor:value.color, padding:"0.125rem"}}>
+      <span key={value.id} style={{backgroundColor:value.color, padding:"0.125rem", border:"3px solid #000", borderRadius:"25px", marginRight:"0.125rem", color:"white", paddingLeft:"0.5rem", paddingRight:"0.5rem"}}>
         {value.name}
       </span>
       );
