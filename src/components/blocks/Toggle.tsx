@@ -1,11 +1,9 @@
 import { Fragment } from "react";
 import { Text } from "./Text";
-import { renderNestedList } from "./NestedList";
 import {ToggleProp } from "../../types/props/blockProps"
 
 
 export const Toggle = ({  text, toggleContent }: ToggleProp) => {
-  console.log("Toggle Component:", toggleContent)
   return (
     <details>
     <summary>

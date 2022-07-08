@@ -1,13 +1,11 @@
-// @ts-ignore
 import { notion } from "../../utils/notion";
 
 // seperate and return block objects for render on post
-export const getBlocks = async (blockId) => {
+export const getBlocks = async (blockId: string) => {
   const blocks = [];
   let cursor;
   while (true) {
-    //@ts-ignore
-    const { results, next_cursor } = await notion.blocks.children.list({
+    const { results, next_cursor }: any = await notion.blocks.children.list({
       start_cursor: cursor,
       block_id: blockId,
     });
@@ -17,6 +15,5 @@ export const getBlocks = async (blockId) => {
     }
     cursor = next_cursor;
   }
-  // console.log("BLOCK LIST",blocks)
   return blocks;
 }; 

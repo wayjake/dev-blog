@@ -11,45 +11,15 @@ import ToDo from "./ToDo";
 import Toggle from "./Toggle";
 import { RenderBlockProps } from "../../types/props/componentProps";
 
+export const RenderBlock: React.FC<any> = ({ block }) => {
+// export const RenderBlock: React.FC<RenderBlockProps> = ({ block }) => {
 
-/* @TODO: remove interfaces from here */
-interface Props {
-  block: Block
-}
-
-interface Value {
-  rich_text?: [{
-    text?: {
-      content: string;
-      url: string;
-    }
-  }];
-  children?: [{
-    type: string;
-  }]
-  title?: string;
-  text?: object;
-  url?: string;
-  external?: { url: string };
-  file?: { url: string };
-  type?: string;
-  caption?: any;
-  checked?: boolean;
-  color?: string;
-}
-export const RenderBlock: React.FC<RenderBlockProps> = ({ block }) => {
-console.log("BLOCKZ", block)
-// export const RenderBlock: React.FC<Props> = ({ block }) => {
-  // const notionType: string = block.type;
-  // const id = block.id;
-  // const value: Value = block.notionType;
-  const { type, id } = block;
+  const { type, id }: any = block;
   const value = block[type];
-  // const value: Value = block.notionType;
+  console.log()
 
   const typeMap = new Map([
-    // ["paragraph", <Paragraph text={value.rich_text?.text?.content}/>],
-    ["paragraph", <p><Text text={value.rich_text?.text?.content}/></p>],
+    ["paragraph", <p><Text text={value.rich_text ? value.rich_text[0].plain_text : ""}/></p>],
     ["heading_1", <h1><Text text={value.rich_text?.text?.content} /></h1>],
     ["heading_2", <h2><Text text={value.rich_text?.text?.content}/></h2> ],
     ["heading_3", <h3><Text text={value.rich_text?.text?.content}/></h3>],

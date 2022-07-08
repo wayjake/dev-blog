@@ -17,7 +17,13 @@ export const getDatabasePosts = async () => {
     //database id string is used here now
     database_id: `${process.env.NOTION_DATABASE_ID}`,
   });
+  const responseResults = response.results.map((page) => {
+    return {
+      id: page.id,
+      name: page,
+    }
+  })
   let pagesInDatabase: Page[] = response.results; 
-
+  console.log("pages in db", pagesInDatabase); 
   return pagesInDatabase; //returns a Page[] object 
 };

@@ -3,16 +3,22 @@ import { title } from "process";
 import { Page } from "../../types/notion-api/Page";
 import { User } from "../../types/notion-api/User";
 import {Tag, Text} from "../blocks";
+import { TagProp } from "../blocks/Tag";
 import { Header } from "./Header";
+import { initProps } from "../../types/props/initialProps";
 
 interface BlogListProps {
   posts: Post[];
   users: User[];
 }
 
-interface Post {
+export interface Post {
   archived?: boolean;
-  cover?: string | null;
+  cover?: {
+    external: {
+      url: string;
+    }
+  }
   created_by: {
     id: string
   }
@@ -35,19 +41,15 @@ interface Post {
     Name?: {
        title: {
         [key: string]: {
+          plain_text?: string
           text: {
           content: string
-        }
+          }
         }
      }
   }
     Tags?: {
-      multi_select: {
-        [key: string]: {
-          name: string
-          color: string
-        }
-      }
+      multi_select: TagProp[]
     }
     Summary?: {
       rich_text:{
@@ -60,14 +62,16 @@ interface Post {
     }
   }
 }
-
 export const BlogList:React.FC<BlogListProps>= ({ posts, users }) => {
-  console.log("POSTS LOG", posts)
+// export const BlogList:React.FC<initProps>= ({ posts, users }) => {
+
+  console.log("posts", posts); 
   return (
 
     <div>
         <Header />
         <ol>
+        {/* {posts.map((post: Page) => { */}
           {posts.map((post: Post) => {
             
             const date = new Date(post.last_edited_time as string).toLocaleString(
@@ -89,8 +93,8 @@ export const BlogList:React.FC<BlogListProps>= ({ posts, users }) => {
                   </Link>
                 </h3>
 
-            <p>{"by "+users[post.created_by.id]}</p>
-            <p>{post?.properties?.Tags?.multi_select[0] ?"Tags: ": ""}<Tag value={post?.properties?.Tags?.multi_select}/></p>               
+            <p>{"by "+users[(post.created_by.id as unknown as number)]}</p>
+            <p>{post?.properties?.Tags?.multi_select[0] ?"Tags: ": ""}<Tag values={post?.properties?.Tags?.multi_select ? post.properties.Tags.multi_select : null}/></p>               
 
               <p><Text text={post.properties.Summary?.rich_text[0]?.text?.content} /></p>
 

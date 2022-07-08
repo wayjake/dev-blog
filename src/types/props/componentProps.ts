@@ -1,9 +1,11 @@
-import { Page } from "../notion-api/Page"
+// import { Page } from "../notion-api/Page"
 import { User } from "../notion-api/User"
 import { Block } from "../notion-api/Block"
+import { Post } from "../../components/blog-list/BlogList";
 
 export interface BlogPostProps {
-  page: Page;
+  // page: Page;
+  page: Post;
   users: User[];
   blocks: Block[];
 }

@@ -7,11 +7,12 @@ import { databaseId } from "../../api/utils/notion";
 import { getUsers } from "../../api/User/getUsers";
 import BlogPost from "../../../components/blog-post/BlogPost";
 import Head from "next/head";
+import { BlogPostProps } from "../../../types/props/componentProps";
 
-export default function Post({ page, blocks, users }) {
+export default function Post({ page, blocks, users }: BlogPostProps) {
   return <>
     <Head>
-      <title>{page.properties.Name.title[0].plain_text}</title>
+      <title>{page?.properties?.Name?.title[0].plain_text}</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <BlogPost page={page} blocks={blocks} users={users} />
@@ -26,7 +27,7 @@ export const getStaticPaths = async () => {
   };
 };
 
-export const getStaticProps = async (context) => {
+export const getStaticProps = async (context: any) => {
   const id = context.params.id!;
   const page = await getPage(id);
   const users = await getUsers();

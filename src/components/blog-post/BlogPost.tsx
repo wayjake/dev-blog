@@ -17,8 +17,8 @@ export default function BlogPost({ page, blocks, users }: BlogPostProps) {
           <h1>
             <Text text={page.properties.Name?.title[0]?.text?.content} />
           </h1>
-        <p>{"by "+users[page.created_by.id]}</p> 
-        <p>{page.properties.Tags.multi_select[0] ?"Tags: ": ""}<Tag value={page.properties.Tags.multi_select}/></p>    
+        <p>{"by "+users[(page.created_by.id as unknown as number)]}</p> 
+        <p>{page?.properties?.Tags?.multi_select[0] ?"Tags: ": ""}<Tag values={page?.properties?.Tags?.multi_select ? page.properties.Tags.multi_select : null}/></p>               
         <section>
           {blocks.map((block:any) => ( <RenderBlock key={block.id} block={block} /> ))}
           <Link href="/">

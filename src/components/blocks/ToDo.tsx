@@ -1,5 +1,4 @@
 import { Text } from "./Text";
-import { renderNestedList } from "./NestedList";
 import {ToDoProp } from "../../types/props/blockProps"
 
 export const ToDo = ({  text,checked,id }: ToDoProp) => {

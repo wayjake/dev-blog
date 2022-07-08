@@ -1,19 +1,19 @@
 import Head from "next/head";
+import * as S from "./BlogList.styled";
 
 export const Header = () =>{
     return (
         <div>
             <Head>
-            <title>Dubsado Notion Dev</title>
+            <title>Dubsado Developer Blog</title>
             <link rel="icon" href="/favicon.ico" />
             </Head>
+            <S.HeaderContainer>
                 <header>
-                    <h1>Dubsado Developer Blog</h1>
-                        <p>
-                            Here you find all the developer logs currently hosted on Notion
-                        </p>
-                    <h2>All Posts</h2>
+                    <h1>Developer Blog</h1>
                 </header>
+            </S.HeaderContainer>
         </div>
     )
 }
+

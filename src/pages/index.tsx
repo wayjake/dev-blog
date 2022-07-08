@@ -1,22 +1,18 @@
+import NavBar from "../components/nav-bar/NavBar";
 import {BlogList} from "../components/blog-list";
 import { getDatabasePosts } from "./api/Database/getDatabasePosts";
 import { getUsers } from "./api/User/getUsers";
-import Page from "../types/page";
+import { Page } from "../types/notion-api/Page";
 import {ThemeProvider } from 'styled-components'
-import GlobalStyle  from '../styles/global'
 import Head from "next/head";
-
+import { initProps } from "../types/props/initialProps";
+import { Post } from "../components/blog-list/BlogList";
 // @ts-ignore
-interface IHomeProps {
-  posts: Page[];
-  users: { [key: string]: string };  
-}
 
-export default function Home({ posts, users}: IHomeProps) {
+
+export default function Home({ posts, users }: initProps) {
   return (
-    <div>
         <BlogList posts={posts} users={users}/>
-    </div>
   );
 }
 
@@ -24,12 +20,15 @@ export default function Home({ posts, users}: IHomeProps) {
 export const getStaticProps = async () => {
   const databasePosts = await getDatabasePosts();
   const users = await getUsers();
-
+  // let props: initProps = {
+  let props: any = { 
+    posts: databasePosts, 
+    users: users, 
+  }
+  
+  //@Todo: getUsers() is called more times than it needs to be
   return {
-    props: {
-      posts: databasePosts,
-      users: users
-    },
+    props,
     revalidate: 1,
   };
  
