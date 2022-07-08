@@ -1,10 +1,7 @@
-interface TextProps {
-  text?: string;
-  url?: string;
-}
+import {TextProp } from "../../types/props/blockProps"
 
 
-export const Text = ({ text, url }: TextProps) => {
+export const Text = ({ text, url }: TextProp) => {
   if (url) {
     return (
       <a href={url} />

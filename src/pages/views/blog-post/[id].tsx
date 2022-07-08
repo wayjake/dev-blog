@@ -7,57 +7,6 @@ import { databaseId } from "../../api/utils/notion";
 import { getUsers } from "../../api/User/getUsers";
 import BlogPost from "../../../components/blog-post/BlogPost";
 import Head from "next/head";
-<<<<<<< HEAD
-import { getBlocks } from "../../../api/Page/Blocks/getBlocks";
-import { getDatabasePosts } from "../../../api/Database/getDatabasePosts"
-import { getPage } from "../../../api/Page/getPage"
-import Link from "next/link";
-import { Text } from "../../../components/blog-post/blocks/Text";
-import RenderBlock from "../../../components/RenderBlock";
-import { getUsers } from "../../../api/User/getUsers";
-import { Tag } from "../../../components/blog-post/Tag"
-import Page from "../../../types/page";
-import Block from "../../../types/block";
-import User from "../../../types/user";
-
-interface PostProps {
-  page: Page;
-  blocks: Block[];
-  users: User[];
-}
-
-export default function Post({ page, blocks, users }: PostProps) {
-  if (!page || !blocks) {
-    return <div />;
-  }
-  console.log("BLOCKZ", blocks)
-  console.log("pagez", page)
-  console.log("userz", users)
-  return (
-    <div>
-      <Head>
-        <title>{page.properties.Name.title[0].plain_text}</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
-      <article>
-        {/* {blog header} */}
-          <img src={page.cover ? page.cover.external.url : ""} style={page.cover? { display: "block", width: "100%", height: "30vh", objectFit: "cover", objectPosition: "center 34.27%" }: {}} /> 
-        <h1>
-        <Text text={page.properties.Name?.title[0]?.text?.content} />
-        </h1>
-        <p>{"by "+users[page.created_by.id]}</p> 
-        <p>{page.properties.Tags.multi_select[0] ?"Tags: ": ""}<Tag value={page.properties.Tags.multi_select}/></p>    
-        <section>
-          {blocks.map((block:any) => ( <RenderBlock key={block.id} block={block} /> ))}
-          <Link href="/">
-            <a>← Go home</a>
-          </Link>
-        </section>
-      </article>
-    </div>
-  );
-=======
 
 export default function Post({ page, blocks, users }) {
   return <>
@@ -67,7 +16,6 @@ export default function Post({ page, blocks, users }) {
     </Head>
     <BlogPost page={page} blocks={blocks} users={users} />
   </>
->>>>>>> 9e3b938b4b9bbceeef01e41d98a34bd4f1170981
 }
 
 export const getStaticPaths = async () => {

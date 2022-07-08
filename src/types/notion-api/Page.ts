@@ -6,6 +6,5 @@ import {
   //exports the PageProperties type 
   export type PageProperties = Pick<CreatePageParameters, "properties">;
   
-  //this exports the Pages array we get from the Database
-  // export type Pages = QueryDatabaseResponse["results"]; 
+  // this exports the Page type we get from the Database
   export type Page = GetPageResponse; 

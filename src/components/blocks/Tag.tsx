@@ -1,5 +1,14 @@
-//@ts-ignore
-export const Tag:React.FC = ({ value }) => {
+interface TagProps {
+  value: {
+    [key: string]:{
+      color: string
+      name: string
+    }
+  }
+}
+
+export const Tag = ({ value }: TagProps) => {
+    console.log("Tag", value);
     return value.map((value) => {
       const {
         name,

@@ -1,11 +1,7 @@
+import {BookmarkProp } from "../../types/props/blockProps"
 //@ts-ignore
-interface Props {
-  value: {
-    url?: string;
-  }
-}
 
-export const Bookmark:React.FC<Props> = ({ value }) => {
+export const Bookmark:React.FC<BookmarkProp> = ({ value }) => {
     const href = value.url
     return (
       <a href={ href } target="_blank">

@@ -1,16 +1,9 @@
 import Link from "next/link";
+import {FileProp } from "../../types/props/blockProps"
 
-interface Props {
-  value: {
-    external: { url: string };
-    file: { url: string };
-    type: string;
-    caption?: any;
-  }
-}
 
 //@ts-ignore
-export const File:React.FC<Props> = ({ value }) => {
+export const File:React.FC<FileProp> = ({ value }) => {
     const src_file =
     value.type === "external" ? value.external.url : value.file.url;
   const splitSourceArray = src_file.split("/");

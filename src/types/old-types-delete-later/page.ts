@@ -1,9 +1,5 @@
 import User from './user';
-import File from './file';
-import {
-  CreatePageParameters,
-  QueryDatabaseResponse,
-} from "@notionhq/client/build/src/api-endpoints"; 
+import File from './file'; 
 
 
 type Page = {

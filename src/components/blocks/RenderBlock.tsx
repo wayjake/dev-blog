@@ -1,5 +1,5 @@
 
-import Block from "../../types/block";
+import { Block } from "../../types/notion-api/Block";
 import Bookmark from "./Bookmark";
 import Code from "./Code";
 import File from "./File";
@@ -9,7 +9,10 @@ import Paragraph from "./Paragraph";
 import Text from "./Text";
 import ToDo from "./ToDo";
 import Toggle from "./Toggle";
+import { RenderBlockProps } from "../../types/props/componentProps";
 
+
+/* @TODO: remove interfaces from here */
 interface Props {
   block: Block
 }
@@ -34,7 +37,7 @@ interface Value {
   checked?: boolean;
   color?: string;
 }
-export const RenderBlock: React.FC = ({ block }) => {
+export const RenderBlock: React.FC<RenderBlockProps> = ({ block }) => {
 console.log("BLOCKZ", block)
 // export const RenderBlock: React.FC<Props> = ({ block }) => {
   // const notionType: string = block.type;

@@ -1,9 +1,6 @@
-interface ImageProps {
-  imgUrl: string;
-  imgCaption: string;
-}
+import {ImageProp } from "../../types/props/blockProps"
 
-export const Image = ({ imgUrl, imgCaption }: ImageProps) => {
+export const Image = ({ imgUrl, imgCaption }: ImageProp) => {
   return (
     <figure>
       <img src={imgUrl} alt={imgCaption} />

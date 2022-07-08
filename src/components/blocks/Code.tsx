@@ -1,10 +1,6 @@
-//@ts-ignore
-interface CodeProps {
-  text?: string;
-  id: string;
-}
+import {CodeProp } from "../../types/props/blockProps"
 
-const Code = ({  text, id }: CodeProps) => {
+const Code = ({  text, id }: CodeProp) => {
   return (
     <pre>
         <code key = {id}>

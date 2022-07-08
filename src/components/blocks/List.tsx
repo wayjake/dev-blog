@@ -1,12 +1,9 @@
 import { Text } from "./Text";
 import { renderNestedList } from "./NestedList";
+import {ListProp } from "../../types/props/blockProps"
 
-interface ListProps {
-  type: string;
-  text: string;
-}
 
-const List = ({ type, text }: ListProps) => {
+const List = ({ type, text }: ListProp) => {
   return (
     <li>
     <Text text={text} />

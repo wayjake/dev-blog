@@ -1,12 +1,8 @@
 import { Text } from "./Text";
 import { renderNestedList } from "./NestedList";
+import {ToDoProp } from "../../types/props/blockProps"
 
-interface ToDoProps {
-  text: string;
-  checked: boolean;
-  id: string;
-}
-export const ToDo = ({  text,checked,id }: ToDoProps) => {
+export const ToDo = ({  text,checked,id }: ToDoProp) => {
   console.log("TODO TEXT",text)
   return (
     <label htmlFor={id}>
