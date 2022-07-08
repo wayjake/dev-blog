@@ -1,0 +1,67 @@
+import styled from 'styled-components';
+
+export const MainContainer = styled.div`
+  display: flex;
+  border: 7px solid #000;
+  border-radius: 15px;
+  background-size: 406px
+  box-shadow: 7px 7px 0 -1px #000;
+  flex-direction: column;
+  background-image: url(https://uploads-ssl.webflow.com/62c5fce152f02073d211e4b0/62c6035c722f9652681af0da_Screen%20Shot%202022-07-06%20at%202.49.04%20PM.png);
+  gap: 30px;
+`
+
+export const BodyContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px 20px 18px;
+  gap: 18px;
+`
+
+export const TextContainer = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+  gap: 15px;
+  color: #333;
+  font-size: 16px;
+
+  p {
+    margin: 0;
+  }
+`
+
+export const Title = styled.h1`
+  font-family: 'DM Sans', sans-serif;
+  font-size: 32px;
+  margin: 0;
+`
+
+export const Image = styled.img`
+  display: flex;
+  vertical-align: middle;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 110%;  
+  height: 130px;
+  max-width: 100%;
+  object-fit: cover;
+  border-bottom: 6px solid #000;
+`
+
+export const Button = styled.a`
+  display: flex;
+  background-color: #ff494b;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #000;
+  border-radius: 10px;
+  padding: 9px 15px;
+  font-size: 14px;
+`

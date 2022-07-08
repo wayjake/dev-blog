@@ -4,6 +4,7 @@ import {Tag, Text, RenderBlock} from "../blocks";
 import * as S from './BlogPost.styled'
 import style from 'styled-jsx'
 import { BlogPostProps } from "../../types/props/componentProps";
+import { CoverImage } from "../blocks/CoverImage";
 
 export default function BlogPost({ page, blocks, users }: BlogPostProps) {
   if (!page || !blocks) {
@@ -13,7 +14,7 @@ export default function BlogPost({ page, blocks, users }: BlogPostProps) {
     <div>
       <article>
         {/* {blog header} */}
-          <img src={page.cover ? page.cover.external.url : ""} style={page.cover? { display: "block", width: "100%", height: "30vh", objectFit: "cover", objectPosition: "center 34.27%" }: {}} /> 
+          <CoverImage src={page.cover ? page.cover.external.url : ""}/> 
           <h1>
             <Text text={page.properties.Name?.title[0]?.text?.content} />
           </h1>
@@ -26,12 +27,6 @@ export default function BlogPost({ page, blocks, users }: BlogPostProps) {
           </Link>
         </section>
       </article>
-
-      <style jsx>{`
-        h1 {
-          text-decoration: underline;
-        }
-      `}</style>
     </div>
   );
 }

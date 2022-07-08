@@ -9,7 +9,6 @@ export interface TagProp extends TagProps {
 }
 
 export const Tag = ({ values }: TagProps) => {
-  console.log("TAG VALUES", values)
     return (<span>
       {values?.map((value) => {
       const {

@@ -1,4 +1,4 @@
-import {ImageProp } from "../../types/props/blockProps"
+import { ImageProp } from "../../types/props/blockProps"
 
 export const Image = ({ imgUrl, imgCaption }: ImageProp) => {
   return (

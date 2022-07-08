@@ -11,12 +11,12 @@ import ToDo from "./ToDo";
 import Toggle from "./Toggle";
 import { RenderBlockProps } from "../../types/props/componentProps";
 
-export const RenderBlock: React.FC<any> = ({ block }) => {
+
+export const RenderBlock: React.FC<RenderBlockProps|any> = ({ block }) => {
 // export const RenderBlock: React.FC<RenderBlockProps> = ({ block }) => {
 
-  const { type, id }: any = block;
-  const value = block[type];
-  console.log()
+  const { type, id } = block as {type: string, id: string};
+  const value = block[type]
 
   const typeMap = new Map([
     ["paragraph", <p><Text text={value.rich_text ? value.rich_text[0].plain_text : ""}/></p>],

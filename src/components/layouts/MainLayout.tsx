@@ -8,6 +8,13 @@ const Main = styled.div`
   flex-direction: column;
   align-items: flex-start;
   padding: 0px 60px;
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (max-width: 768px) {
+    min-width: 100%;
+  }
 `
 
 const MainLayout: React.FC = ({ children }) => {

@@ -6,15 +6,17 @@ import { Pages } from "../types/notion-api/PageResponse";
 import {ThemeProvider } from 'styled-components'
 import Head from "next/head";
 import { initProps } from "../types/props/initialProps";
+import { Post } from "../types/props/componentProps";
 //import { Post } from "../components/blog-list/BlogList";
+import { BlogListProps } from "../types/props/componentProps"
 // @ts-ignore
 
 
-export default function Home({ posts, users }: initProps) {
-  console.log("here are the posts", posts); 
-  if("created_time" in posts[0]){
-    console.log('createdTime', posts[0].created_time);
-  }
+export default function Home({ posts, users }: BlogListProps) {
+    /*if("properties" in posts[0]){
+      console.log("properties found", posts[0].properties); 
+    } */
+  
   return (
         <BlogList posts={posts} users={users}/>
   );

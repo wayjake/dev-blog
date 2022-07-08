@@ -1,5 +1,5 @@
 import { notion } from "../utils/notion";
-import { Page } from "../../../types/notion-api/Page"
+import { Pages } from "../../../types/notion-api/PageResponse"
 // Pull of Database Object/List will return a list of objects (pages)
 export const getDatabasePosts = async () => {
   const response = await notion.databases.query({
@@ -13,12 +13,16 @@ export const getDatabasePosts = async () => {
         }
       ]
     },
+    
     //@ts-ignore
     //database id string is used here now
     database_id: `${process.env.NOTION_DATABASE_ID}`,
   });
   console.log("getdatabaseposts"); 
-  let pagesInDatabase: Page[] = response.results; 
+  let pagesInDatabase: Pages[] = response.results; 
+  if("properties" in pagesInDatabase[0]){
+    console.log(pagesInDatabase[0].properties); 
+  }
   console.log("pages in db", pagesInDatabase); 
   return pagesInDatabase; //returns a Page[] object 
 };

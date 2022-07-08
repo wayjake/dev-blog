@@ -5,52 +5,27 @@ import { Post } from "../../types/props/componentProps";
 import { Header } from "./Header";
 import { initProps } from "../../types/props/initialProps";
 import Card from "./Card";
+import { Pages  } from "../../types/notion-api/PageResponse";
+import { BlogListProps } from "../../types/props/componentProps";
 
-export const BlogList:React.FC<initProps>= ({ posts, users }) => {
-
-  console.log("posts", posts); 
+export const BlogList:React.FC<BlogListProps> = ({ posts }) => {
+// export const BlogList:React.FC<initProps>= ({ posts, users }) => {
   return (
-
     <div>
         <Header />
-        <ol>
-        {/* {posts.map((post: Page) => { */}
+        {/* <ol id="cards-list"> */}
           {posts.map((post: Post) => {
-            
-            const date = new Date(post.last_edited_time as string).toLocaleString(
-              "en-US",
-              {
-                month: "short",
-                day: "2-digit",
-                year: "numeric",
-              }
-            );
-
             return (
-              <li key={post.id}>
-                <Card title="Why We Switched from Lastpass to Bitwarden" date={new Date()} body="I am a summary of what this post is about or I am possibly the first X amount of characters from the first available text blocks." />
-                <h3>
-                  <Link href={`./views/blog-post/${post.id}`}>
-                    <a>
-                      <Text text={post.properties.Name?.title[0]?.text?.content} />
-                    </a>
-                  </Link>
-                </h3>
-
-            <p>{"by "+users[(post.created_by.id as unknown as number)]}</p>
-            <p>{post?.properties?.Tags?.multi_select[0] ?"Tags: ": ""}<Tag values={post?.properties?.Tags?.multi_select ? post.properties.Tags.multi_select : null}/></p>               
-
-              <p><Text text={post.properties.Summary?.rich_text[0]?.text?.content} /></p>
-
-                <p>{date}</p>
-                <Link href={`./views/blog-post/${post.id}`}>
-                  <a> Read post →</a>
-                </Link>
-              </li>
+              <Card 
+              key={post.id} 
+              title={post.properties.Name?.title[0]?.text?.content} 
+              date={new Date(post.last_edited_time as string)} 
+              tags={post?.properties?.Tags?.multi_select} 
+              body={post.properties.Summary?.rich_text[0]?.text?.content} 
+              link={`./views/blog-post/${post.id}`} />
             );
-
           })}
-        </ol>
+        {/* </ol> */}
     </div>
     )
  }

@@ -10,6 +10,11 @@ export interface BlogPostProps {
   blocks: Block[];
 }
 
+export interface BlogListProps {
+  posts: Post[];
+  users: User[];
+}
+
 export interface RenderBlockProps {
   block: Block;
 }
